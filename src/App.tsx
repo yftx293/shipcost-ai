@@ -8,6 +8,7 @@ import { WorkloadForm } from "./components/calculator/WorkloadForm";
 import { WorkloadSummary } from "./components/calculator/WorkloadSummary";
 import { ModelComparison } from "./components/comparison/ModelComparison";
 import { ScaleSimulator } from "./components/insights/ScaleSimulator";
+import { CostBreakdown } from "./components/insights/CostBreakdown";
 import { PricingSources } from "./components/PricingSources";
 import { calculateCost } from "./lib/calculateCost";
 import { calculateUsage } from "./lib/calculateUsage";
@@ -50,6 +51,7 @@ function App() {
 
         <ModelComparison estimates={estimates} monthlyBudget={workload.monthlyBudget} />
         <ScaleSimulator workload={workload} estimates={estimates} />
+        <CostBreakdown estimates={estimates} />
         <PricingSources />
       </main>
 
