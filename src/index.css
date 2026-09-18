@@ -1,5 +1,43 @@
 @import "tailwindcss";
 
+/*
+ * ShipCost AI design tokens.
+ *
+ * A calm, technical palette: a cool near-white page, one near-black ink, and a
+ * single deep-teal accent reserved for interactive and selected states. No
+ * shadows are defined on purpose — hairline borders and whitespace carry the
+ * structure instead.
+ */
+@theme {
+  --color-page: #fafafb;
+  --color-surface: #ffffff;
+  --color-ink: #101317;
+  --color-ink-2: #545c68;
+  --color-ink-3: #8b939e;
+  --color-line: #e4e7eb;
+  --color-line-2: #cdd2d9;
+  --color-accent: #0e6f63;
+  --color-accent-soft: #e6f1ef;
+
+  --font-sans:
+    "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:
+    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
 @layer base {
-  body { margin: 0; }
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Keep a single, consistent keyboard focus treatment across the whole page. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }

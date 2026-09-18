@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { modelPricing } from "./data/pricing";
 import { customWorkload, workloadPresets, type PresetId } from "./data/presets";
+import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { Footer } from "./components/Footer";
 import { WorkloadForm } from "./components/calculator/WorkloadForm";
 import { WorkloadSummary } from "./components/calculator/WorkloadSummary";
 import { ModelComparison } from "./components/comparison/ModelComparison";
@@ -31,18 +33,24 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900 sm:px-6 lg:py-12">
-      <div className="mx-auto max-w-6xl">
+    <div className="min-h-screen bg-page text-ink">
+      <Header />
+
+      <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
         <Hero selectedPreset={selectedPreset} onSelectPreset={selectPreset} />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="overflow-hidden rounded-lg border border-line bg-surface lg:grid lg:grid-cols-[55fr_45fr]">
           <WorkloadForm workload={workload} onChange={updateWorkload} />
-          <WorkloadSummary usage={usage} />
+          <div className="border-t border-line lg:border-t-0 lg:border-l">
+            <WorkloadSummary usage={usage} />
+          </div>
         </div>
 
         <ModelComparison estimates={estimates} />
-      </div>
-    </main>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 

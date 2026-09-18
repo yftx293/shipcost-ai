@@ -1,5 +1,7 @@
 import type { PresetId } from "../data/presets";
 
+const presets: PresetId[] = ["chatbot", "rag", "agent", "custom"];
+
 const presetLabels: Record<PresetId, string> = {
   chatbot: "Chatbot",
   rag: "RAG Assistant",
@@ -14,16 +16,31 @@ interface PresetSelectorProps {
 
 export function PresetSelector({ selectedPreset, onSelectPreset }: PresetSelectorProps) {
   return (
-    <section aria-labelledby="preset-heading" className="mb-6">
-      <h2 id="preset-heading" className="mb-3 text-sm font-semibold text-slate-700">Start with an example workload</h2>
-      <div className="flex flex-wrap gap-2">
-        {(Object.keys(presetLabels) as PresetId[]).map((preset) => (
-          <button key={preset} type="button" aria-pressed={selectedPreset === preset} onClick={() => onSelectPreset(preset)} className={`rounded-md border px-3 py-2 text-sm font-medium transition ${selectedPreset === preset ? "border-blue-700 bg-blue-700 text-white" : "border-slate-300 bg-white text-slate-700 hover:border-blue-400"}`}>
-            {presetLabels[preset]}
-          </button>
-        ))}
+    <div>
+      <div role="group" aria-label="Example workload presets" className="flex flex-wrap gap-2">
+        {presets.map((preset) => {
+          const isSelected = preset === selectedPreset;
+
+          return (
+            <button
+              key={preset}
+              type="button"
+              aria-pressed={isSelected}
+              onClick={() => onSelectPreset(preset)}
+              className={`rounded-md border px-3.5 py-2 text-sm transition-colors ${
+                isSelected
+                  ? "border-ink bg-ink font-semibold text-surface"
+                  : "border-line bg-surface font-medium text-ink-2 hover:border-line-2 hover:text-ink"
+              }`}
+            >
+              {presetLabels[preset]}
+            </button>
+          );
+        })}
       </div>
-      <p className="mt-2 text-sm text-slate-500">Example workload — adjust to match your application.</p>
-    </section>
+      <p className="mt-3 text-sm text-ink-3">
+        Example workload — adjust to match your application.
+      </p>
+    </div>
   );
 }
