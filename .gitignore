@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Deployment platform metadata
+.vercel
+
 # Local environment files and secrets
 .env
 .env.*
