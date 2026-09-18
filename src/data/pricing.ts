@@ -1,4 +1,15 @@
-import type { ModelPricing } from "../types/pricing";
+import type { ModelPricing, Provider } from "../types/pricing";
+
+/**
+ * Provider ids are stored lowercased, so display names are mapped explicitly
+ * rather than relying on CSS text-transform (which renders "openai" as
+ * "Openai").
+ */
+export const providerLabels: Record<Provider, string> = {
+  openai: "OpenAI",
+  anthropic: "Anthropic",
+  google: "Google",
+};
 
 /**
  * Standard paid-tier text-token list prices, checked against the linked

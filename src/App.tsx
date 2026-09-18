@@ -46,7 +46,7 @@ function App() {
           </div>
         </div>
 
-        <ModelComparison estimates={estimates} />
+        <ModelComparison estimates={estimates} monthlyBudget={workload.monthlyBudget} />
       </main>
 
       <Footer />
