@@ -1,3 +1,5 @@
+import { formatNumber } from "./formatNumber";
+
 const usdFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -28,4 +30,18 @@ export function formatCurrency(value: number): string {
     return `${sign}$${absoluteValue.toFixed(4)}`;
   }
   return `${sign}${usdFormatter.format(absoluteValue)}`;
+}
+
+/**
+ * Compact USD for space-constrained labels such as chart axis ticks, where cents
+ * are noise: 0 -> "$0", 66.5 -> "$67", 1200 -> "$1.2K", 1200000 -> "$1.2M".
+ */
+export function formatCompactCurrency(value: number): string {
+  if (!Number.isFinite(value)) return "$0";
+
+  const sign = value < 0 ? "-" : "";
+  const rounded = Math.round(Math.abs(value));
+
+  if (rounded < 1_000) return `${sign}$${rounded}`;
+  return `${sign}$${formatNumber(rounded)}`;
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatCurrency } from "./formatCurrency";
+import { formatCompactCurrency, formatCurrency } from "./formatCurrency";
 
 describe("formatCurrency", () => {
   it("formats ordinary amounts with grouping and two decimals", () => {
@@ -21,5 +21,28 @@ describe("formatCurrency", () => {
   it("returns a finite fallback for invalid input", () => {
     expect(formatCurrency(Number.NaN)).toBe("$0.00");
     expect(formatCurrency(Number.POSITIVE_INFINITY)).toBe("$0.00");
+  });
+});
+
+describe("formatCompactCurrency", () => {
+  it("drops cents for axis-style labels", () => {
+    expect(formatCompactCurrency(0)).toBe("$0");
+    expect(formatCompactCurrency(66.5)).toBe("$67");
+    expect(formatCompactCurrency(500)).toBe("$500");
+  });
+
+  it("compacts thousands and millions", () => {
+    expect(formatCompactCurrency(1_200)).toBe("$1.2K");
+    expect(formatCompactCurrency(1_000)).toBe("$1K");
+    expect(formatCompactCurrency(1_000_000)).toBe("$1M");
+  });
+
+  it("carries into the compact form instead of printing $1000", () => {
+    expect(formatCompactCurrency(999.6)).toBe("$1K");
+  });
+
+  it("returns a finite fallback for invalid input", () => {
+    expect(formatCompactCurrency(Number.NaN)).toBe("$0");
+    expect(formatCompactCurrency(Number.NEGATIVE_INFINITY)).toBe("$0");
   });
 });
