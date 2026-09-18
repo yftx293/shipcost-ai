@@ -1,3 +1,6 @@
+@import "tailwindcss";
+
+/* Base styles live here; components use Tailwind utility classes. */
 :root {
   --text: #6b6375;
   --text-h: #08060d;
