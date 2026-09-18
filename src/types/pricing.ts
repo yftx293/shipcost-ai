@@ -11,6 +11,17 @@ export interface ModelPricing {
   outputPricePerMillion: number;
   sourceUrl: string;
   checkedAt: string;
+  /**
+   * Machine-readable end date for a price that is only temporarily valid, so a
+   * later phase can flag expired rows. Optional: most list prices have no end
+   * date, and inventing one would be misleading.
+   */
+  validUntil?: string;
+  /**
+   * Human-readable note about the price's timing, shown next to the cost. Only
+   * set where the provider document actually says something about a change.
+   */
+  pricingNote?: string;
 }
 
 /** A pricing entry paired with the cost estimate it produces for a workload. */

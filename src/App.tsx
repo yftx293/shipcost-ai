@@ -7,6 +7,7 @@ import { Footer } from "./components/Footer";
 import { WorkloadForm } from "./components/calculator/WorkloadForm";
 import { WorkloadSummary } from "./components/calculator/WorkloadSummary";
 import { ModelComparison } from "./components/comparison/ModelComparison";
+import { PricingSources } from "./components/PricingSources";
 import { calculateCost } from "./lib/calculateCost";
 import { calculateUsage } from "./lib/calculateUsage";
 import type { Workload } from "./types/workload";
@@ -47,6 +48,7 @@ function App() {
         </div>
 
         <ModelComparison estimates={estimates} monthlyBudget={workload.monthlyBudget} />
+        <PricingSources />
       </main>
 
       <Footer />

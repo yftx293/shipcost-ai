@@ -69,6 +69,12 @@ export function ModelCostCard({ pricing, estimate, monthlyBudget }: ModelCostCar
         <br />
         {formatCurrency(pricing.outputPricePerMillion)} / 1M output tokens
       </p>
+
+      {pricing.pricingNote && (
+        <p className="mt-3 rounded border border-line bg-accent-soft px-2.5 py-2 text-xs leading-relaxed text-ink-2">
+          {pricing.pricingNote}
+        </p>
+      )}
     </article>
   );
 }

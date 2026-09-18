@@ -43,5 +43,17 @@ export const modelPricing: ModelPricing[] = [
     outputPricePerMillion: 3.75,
     sourceUrl: "https://ai.google.dev/gemini-api/docs/pricing",
     checkedAt: "2026-09-18",
+    validUntil: "2026-12-31",
+    pricingNote:
+      "Introductory pricing through Dec 31, 2026. Standard pricing changes Jan 1, 2027.",
   },
 ];
+
+/**
+ * The most recent date on which any price here was verified against its source,
+ * used for the page-level "Pricing checked" line.
+ */
+export const pricingCheckedAt = modelPricing.reduce(
+  (latest, model) => (model.checkedAt > latest ? model.checkedAt : latest),
+  modelPricing[0].checkedAt,
+);
