@@ -7,12 +7,12 @@ import type { ModelPricing } from "../types/pricing";
  */
 export const modelPricing: ModelPricing[] = [
   {
-    id: "gpt-5-mini",
+    id: "gpt-5.6-terra",
     provider: "openai",
-    name: "GPT-5 mini",
-    inputPricePerMillion: 0.25,
-    outputPricePerMillion: 2,
-    sourceUrl: "https://developers.openai.com/api/docs/models/gpt-5-mini",
+    name: "GPT-5.6 Terra",
+    inputPricePerMillion: 2,
+    outputPricePerMillion: 12,
+    sourceUrl: "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
     checkedAt: "2026-09-18",
   },
   {
