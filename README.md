@@ -6,6 +6,10 @@ ShipCost AI is a lightweight AI API cost planner for developers building chatbot
 
 Instead of only showing price-per-token tables, ShipCost converts your expected product usage into application-level estimates: monthly cost, cost per user, budget capacity, and scaling cost.
 
+## Live Demo
+
+[Open ShipCost AI](https://yftx293.github.io/shipcost-ai/)
+
 ## Why ShipCost AI?
 
 Provider pricing pages tell you what a million tokens costs. They do not tell you what your product will cost, because your bill depends on product decisions instead: how many people use it, how often they interact, and how much context each interaction needs.
