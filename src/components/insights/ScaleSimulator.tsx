@@ -90,11 +90,23 @@ export function ScaleSimulator({ workload, estimates }: ScaleSimulatorProps) {
     color: seriesColors[pricing.provider],
   }));
 
-  const chartDescription = `Estimated monthly cost for ${series
-    .map((entry) => entry.label)
-    .join(", ")} from ${formatNumber(points[0].users)} to ${formatNumber(
-    points[points.length - 1].users,
-  )} monthly active users.`;
+  const lastPoint = points[points.length - 1];
+
+  /*
+   * The chart is exposed as a single described image rather than an
+   * interactive region. Recharts' accessibility layer would otherwise make the
+   * <svg> a focus stop with role="application" whose accessible name is just
+   * the concatenated axis text. The description states the endpoint, which is
+   * the takeaway a sighted reader gets from the curve's top-right corner.
+   */
+  const chartDescription =
+    `Estimated monthly cost from ${formatNumber(points[0].users)} to ` +
+    `${formatNumber(lastPoint.users)} monthly active users. At ` +
+    `${formatNumber(lastPoint.users)} users: ` +
+    series
+      .map((entry) => `${entry.label} ${formatCurrency(lastPoint.costs[entry.provider])}`)
+      .join(", ") +
+    ".";
 
   return (
     <section aria-labelledby="scale-heading" className="mt-14">
@@ -141,7 +153,11 @@ export function ScaleSimulator({ workload, estimates }: ScaleSimulatorProps) {
 
       <div className="mt-3 h-[260px] w-full sm:h-[320px]" role="img" aria-label={chartDescription}>
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
+          <LineChart
+            data={points}
+            margin={{ top: 8, right: 12, bottom: 26, left: 0 }}
+            accessibilityLayer={false}
+          >
             <CartesianGrid vertical={false} stroke="#e4e7eb" />
             <XAxis
               dataKey="users"
