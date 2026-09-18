@@ -16,7 +16,12 @@ export function ModelComparison({ estimates, monthlyBudget }: ModelComparisonPro
         Based on your current workload assumptions.
       </p>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      {/*
+       * Three columns only from lg. At md widths a forced 3-up leaves each card
+       * ~229px, which squeezes the label/value rows in the card; two columns
+       * stay comfortable and single-column below sm keeps mobile readable.
+       */}
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {estimates.map(({ pricing, estimate }) => (
           <ModelCostCard
             key={pricing.id}
