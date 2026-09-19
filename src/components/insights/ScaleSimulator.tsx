@@ -117,15 +117,21 @@ export function ScaleSimulator({ workload, estimates }: ScaleSimulatorProps) {
         See how your estimated API cost changes as your user base grows.
       </p>
 
-      <div className="mt-6 flex flex-wrap items-baseline gap-x-10 gap-y-4 border-t border-line pt-5">
-        <div>
-          <p className="text-xs text-ink-3">Current scale</p>
-          <p className="mt-1 font-mono text-lg font-medium tabular-nums text-ink">
-            {formatNumber(workload.users)} active users
-          </p>
-        </div>
+      {/*
+       * "Current workload" is the user's actual situation; everything below it
+       * is hypothetical. The bordered surface separates the two so the chart is
+       * not mistaken for a second reading of the current numbers.
+       */}
+      <div className="mt-6 rounded-lg border border-line bg-surface p-5">
+        <h3 className="flex items-center gap-2 text-xs font-medium text-ink-3">
+          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
+          Current workload
+        </h3>
+        <p className="mt-2 font-mono text-2xl font-medium tabular-nums text-ink">
+          {formatNumber(workload.users)} active users
+        </p>
 
-        <dl className="flex flex-wrap gap-x-8 gap-y-3">
+        <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-4 border-t border-line pt-4">
           {estimates.map(({ pricing, estimate }) => (
             <div key={pricing.id}>
               <dt className="text-xs text-ink-3">{providerLabels[pricing.provider]}</dt>
@@ -138,7 +144,12 @@ export function ScaleSimulator({ workload, estimates }: ScaleSimulatorProps) {
         </dl>
       </div>
 
-      <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+      <h3 className="mt-8 text-sm font-semibold text-ink">Scale scenarios</h3>
+      <p className="mt-1.5 text-sm text-ink-2">
+        Costs below keep your current per-user usage assumptions unchanged.
+      </p>
+
+      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
         {series.map((entry) => (
           <li key={entry.provider} className="flex items-center gap-2 text-xs text-ink-2">
             <span
