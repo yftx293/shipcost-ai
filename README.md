@@ -2,13 +2,15 @@
 
 Estimate your AI app cost before you ship.
 
+[Live Demo](https://shipcost-ai.netlify.app/)
+
+![ShipCost AI product preview](docs/shipcost-preview.png)
+
 ShipCost AI is a lightweight AI API cost planner for developers building chatbots, RAG applications, and AI agents.
 
 Instead of only showing price-per-token tables, ShipCost converts your expected product usage into application-level estimates: monthly cost, cost per user, budget capacity, and scaling cost.
 
-## Live Demo
-
-[Open ShipCost AI](https://yftx293.github.io/shipcost-ai/)
+*The preview above shows the RAG Assistant preset at 1,000 users: 6 interactions per user, 1 model call per interaction, 8,000 input and 800 output tokens per call.*
 
 ## Why ShipCost AI?
 
